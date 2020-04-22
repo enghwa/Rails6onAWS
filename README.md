@@ -1,8 +1,9 @@
 # Rails6onAWS
 
-
 Build the Ruby on Rails 6 local development container.
-Suggestion: do this in AWS Cloud9.
+Suggestion: do this in AWS Cloud9. Cloud9 has docker install but you need to install `docker-compose`.
+ref: https://docs.docker.com/compose/install/
+
 
 ```
 docker build -t ror6dev --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .
@@ -13,6 +14,7 @@ docker build -t ror6dev --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -
 ```
 docker run -it --user "$(id -u):$(id -g)" -v $PWD:/opt/app ror6dev rails new blog
 
+cp docker-compose.yml blog/
 cp Gemfile blog/
 cp config/* blog/config
 cp env blog/.env

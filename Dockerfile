@@ -19,7 +19,8 @@ RUN gem install rails bundler unicorn
 COPY ./Gemfile Gemfile
 RUN bundle install
 
-RUN chown -R user:user /opt/app
+# so they can run
+RUN chown -R user:user /opt/app && chown -R user:user /usr/local/bundle
 WORKDIR /opt/app
 
 USER $USER_ID

@@ -18,12 +18,16 @@ cp docker-compose.yml blog/
 cp Gemfile blog/
 cp config/* blog/config
 cp env blog/.env
+
 cd blog
+export USER_ID=`id -u`
+export GROUP_ID=`id -g`
+docker-compose run --user "$(id -u):$(id -g)" ror6 rails db:setup
 docker-compose up
 
 ```
 This will mount the `blog` directory inside `ror6dev`. You can use vscode(via remote ssh) or Cloud9 to edit your code.
-You can access `ror6dev` shell to run your `rake` or `rails` commands, eg:`rails db:setup`:
+You can access `ror6` in another shell to run your `rake` or `rails` commands, eg:`rails db:setup`:
 
 ```
 docker exec -it blog_ror6_1 bash
